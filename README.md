@@ -4,8 +4,8 @@
 Open Player Controller (OPC for short) is an open source Character Controller that makes a use of RigidBodies to move player around the scene.
 <br>Built from the ground up with C#, OPC is a flexible character system which can be inmplemented into any type of project (FPS only currently).
 <br>Its Modular system is one of the biggest perks. E.g, if you don't want your player to jump in your game/level, simply remove the script and OPC will do the rest.
-<br><br>
-<i><br>The project has started on 30 August 2016.</i>
+
+<br><br><i>The project has started on 30 August 2016.</i>
 
 ##Why does this project exist?
 <br>While the new RigidBody based Character Controller developed by Unity is a good, its codebase is too complex and there are sometimes features that developer doesn't need (e.g mobile input)
