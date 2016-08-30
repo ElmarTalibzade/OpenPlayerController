@@ -9,17 +9,15 @@ public class FPS_Locomotion : MonoBehaviour {
     public float walkSpeed = 2.5f;
     public float sprintSpeed = 4.5f;
 
-    [Header("Jumping States")]
-    public bool canJump = true;
-    public bool isGrounded = true;
-
     float currentSpeed;
 
     [HideInInspector]
     public GameObject fps_camera;
 
-    bool jumpEnabled = false;
-    bool crouchEnabled = false;
+    [HideInInspector]
+    public bool jumpEnabled = false;
+    [HideInInspector]
+    public bool crouchEnabled = false;
 
     void Awake()
     {
@@ -34,11 +32,39 @@ public class FPS_Locomotion : MonoBehaviour {
     void Update()
     {
         transform.eulerAngles = new Vector3(0, fps_camera.GetComponent<FPS_CameraLook>().currentYRotation, 0);
+
+        if (crouchEnabled)
+        {
+            if (GetComponent<FPS_Crouch>().isCrouching)
+            {
+                currentSpeed = GetComponent<FPS_Crouch>().crouchSpeed;
+            }
+            else
+            {
+                currentSpeed = walkSpeed;
+            }
+        }
     }
 
     void FixedUpdate()
     {
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
+        Vector3 moveDirection;
+
+        if (jumpEnabled)
+        {
+            if (GetComponent<FPS_Jump>().isGrounded)
+            {
+                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
+            }
+            else
+            {
+                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed * GetComponent<FPS_Jump>().AirLocomotionSpeedDegradation, -10, Input.GetAxis("Vertical") * currentSpeed * GetComponent<FPS_Jump>().AirLocomotionSpeedDegradation);
+            }
+        }
+        else
+        {
+            moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
+        }
 
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -49,5 +75,4 @@ public class FPS_Locomotion : MonoBehaviour {
 
         transform.GetComponent<Rigidbody>().velocity = finalVelocity;
     }
-
 }

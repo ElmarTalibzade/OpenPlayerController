@@ -7,6 +7,11 @@ public class FPS_Jump : MonoBehaviour {
 
     public float jumpForce = 2.5f;
 
+    public bool canJump = true;
+    public bool isGrounded = true;
+
+    public float AirLocomotionSpeedDegradation = 0.2f;
+
     void Start()
     {
 
@@ -14,15 +19,27 @@ public class FPS_Jump : MonoBehaviour {
 
     void Update()
     {
-        if (GetComponent<FPS_Locomotion>().canJump)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GetComponent<FPS_Locomotion>().isGrounded)
+            if (canJump)
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (isGrounded)
                 {
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
+                    if (GetComponent<FPS_Locomotion>().crouchEnabled)
+                    {
+                        if (!GetComponent<FPS_Crouch>().isCrouching)
+                        {
+                            Jump();
+                        }
+                    }
                 }
             }
         }
+    }
+
+    void Jump()
+    {
+        Debug.Log("Jump!");
+        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
     }
 }

@@ -20,17 +20,37 @@ public class FPS_Crouch : MonoBehaviour {
 	void Start ()
     {
         fps_camera = GetComponent<FPS_Locomotion>().fps_camera;
-	}
+
+        camera_initPos = fps_camera.transform.localPosition;
+        camera_crouchPos = new Vector3(camera_initPos.x, camera_initPos.y - crouchAmount, camera_initPos.z);
+    }
 	
 	void Update ()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            isCrouching = true;
+            if (GetComponent<FPS_Locomotion>().jumpEnabled)
+            {
+                if (GetComponent<FPS_Jump>().isGrounded)
+                {
+                    isCrouching = true;
+                }
+            }
+            else
+            {
+                isCrouching = true;
+            }
         }
         else
         {
-            isCrouching = false;
+            if (!CheckIfColliderAbove())
+            {
+                isCrouching = false;
+            }
+            else
+            {
+                isCrouching = true;
+            }
         }
 
 	    if (isCrouching)
@@ -45,17 +65,21 @@ public class FPS_Crouch : MonoBehaviour {
 
     public void StartCrouching()
     {
-        camera_initPos = fps_camera.transform.localPosition;
-        camera_crouchPos = new Vector3(camera_initPos.x, camera_initPos.y - crouchAmount, camera_initPos.z);
-        
-        fps_camera.transform.position = Vector3.Lerp(fps_camera.transform.position, camera_crouchPos, Time.deltaTime / 0.2f);
+        fps_camera.transform.localPosition = Vector3.Lerp(fps_camera.transform.localPosition, camera_crouchPos, Time.deltaTime / 0.2f);
+        GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
+        GetComponent<CapsuleCollider>().height = 1;
     }
 
     public void StopCrouching()
     {
-        camera_initPos = fps_camera.transform.localPosition;
-        camera_crouchPos = new Vector3(camera_initPos.x, camera_initPos.y - crouchAmount, camera_initPos.z);
+        fps_camera.transform.localPosition = Vector3.Lerp(fps_camera.transform.localPosition, camera_initPos, Time.deltaTime / 0.2f);
 
-        fps_camera.transform.position = Vector3.Lerp(fps_camera.transform.position, camera_initPos, Time.deltaTime / 0.2f);
+        GetComponent<CapsuleCollider>().center = Vector3.zero;
+        GetComponent<CapsuleCollider>().height = 2;
+    }
+
+    bool CheckIfColliderAbove()
+    {
+        return Physics.Raycast(transform.position, Vector3.up, 1);
     }
 }
