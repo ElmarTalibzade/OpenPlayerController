@@ -34,3 +34,11 @@ Open Player Controller is currently is in active development (as of August 2016)
 * React to falling from high places (e.g fall damage)
 * React to being crushed by a RigidBody Object taking its mass into consideration
 * React to having a RigidBody Object thrown at taking its mass into consideration
+* Many more planned (Third Person Shooter Player Controller?)
+
+#How to get Started?
+
+##Implementing Open Player Controller into Unity Project
+
+This can be done by simply navigating to the "Prefabs" folder, where you can find a FPS Player Controller and dragging it into the scene.
+<br><br>And that's pretty much it!
