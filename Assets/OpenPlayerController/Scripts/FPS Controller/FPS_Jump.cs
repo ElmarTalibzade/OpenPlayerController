@@ -19,6 +19,8 @@ public class FPS_Jump : MonoBehaviour {
 
     void Update()
     {
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.01f);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (canJump)
@@ -39,7 +41,6 @@ public class FPS_Jump : MonoBehaviour {
 
     void Jump()
     {
-        Debug.Log("Jump!");
-        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
+        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }
