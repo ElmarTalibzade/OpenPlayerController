@@ -17,9 +17,17 @@ public class FPS_Crouch : MonoBehaviour {
     Vector3 camera_initPos;
     Vector3 camera_crouchPos;
 
-	void Start ()
+    FPS_Locomotion LocomotionModule;
+    CapsuleCollider CapsuleModule;
+    FPS_Jump JumpModule;
+
+    void Start ()
     {
-        fps_camera = GetComponent<FPS_Locomotion>().fps_camera;
+        LocomotionModule = GetComponent<FPS_Locomotion>();
+        JumpModule = GetComponent<FPS_Jump>();
+        CapsuleModule = GetComponent<CapsuleCollider>();
+
+        fps_camera = LocomotionModule.fps_camera;
 
         camera_initPos = fps_camera.transform.localPosition;
         camera_crouchPos = new Vector3(camera_initPos.x, camera_initPos.y - crouchAmount, camera_initPos.z);
@@ -29,9 +37,9 @@ public class FPS_Crouch : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            if (GetComponent<FPS_Locomotion>().jumpEnabled)
+            if (LocomotionModule.jumpEnabled)
             {
-                if (GetComponent<FPS_Jump>().isGrounded)
+                if (JumpModule.isGrounded)
                 {
                     isCrouching = true;
                 }
@@ -66,16 +74,16 @@ public class FPS_Crouch : MonoBehaviour {
     public void StartCrouching()
     {
         fps_camera.transform.localPosition = Vector3.Lerp(fps_camera.transform.localPosition, camera_crouchPos, Time.deltaTime / 0.2f);
-        GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
-        GetComponent<CapsuleCollider>().height = 1;
+        CapsuleModule.center = new Vector3(0, -0.5f, 0);
+        CapsuleModule.height = 1;
     }
 
     public void StopCrouching()
     {
         fps_camera.transform.localPosition = Vector3.Lerp(fps_camera.transform.localPosition, camera_initPos, Time.deltaTime / 0.2f);
 
-        GetComponent<CapsuleCollider>().center = Vector3.zero;
-        GetComponent<CapsuleCollider>().height = 2;
+        CapsuleModule.center = Vector3.zero;
+        CapsuleModule.height = 2;
     }
 
     bool CheckIfColliderAbove()

@@ -3,6 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 
+
 public class FPS_Locomotion : MonoBehaviour {
 
     [Header("Movement")]
@@ -18,61 +19,90 @@ public class FPS_Locomotion : MonoBehaviour {
     public bool jumpEnabled = false;
     [HideInInspector]
     public bool crouchEnabled = false;
+    [HideInInspector]
+    public bool climbEnabled = false;
+
+    Vector3 moveDirection;
+    Vector3 finalVelocity;
+
+    Rigidbody RigidbodyModule;
+    FPS_Jump JumpModule;
+    FPS_Crouch CrouchModule;
+    FPS_CameraLook CameraModule;
+    FPS_Climb ClimbModule;
 
     void Awake()
     {
         fps_camera = transform.GetChild(0).gameObject;
 
-        currentSpeed = walkSpeed;      
-          
-        jumpEnabled = (GetComponent<FPS_Jump>() != null);
-        crouchEnabled = (GetComponent<FPS_Crouch>() != null);        
+        currentSpeed = walkSpeed;
+
+        RigidbodyModule = GetComponent<Rigidbody>();
+        JumpModule = GetComponent<FPS_Jump>();
+        CrouchModule = GetComponent<FPS_Crouch>();
+        ClimbModule = GetComponent<FPS_Climb>();
+        CameraModule = fps_camera.GetComponent<FPS_CameraLook>();
+
+        jumpEnabled = (JumpModule != null);
+        crouchEnabled = (CrouchModule != null);
+        climbEnabled = (ClimbModule != null);
     }
 
     void Update()
     {
-        transform.eulerAngles = new Vector3(0, fps_camera.GetComponent<FPS_CameraLook>().currentYRotation, 0);
+        transform.eulerAngles = new Vector3(0, CameraModule.currentYRotation, 0);
 
         if (crouchEnabled)
         {
-            if (GetComponent<FPS_Crouch>().isCrouching)
+            if (CrouchModule.isCrouching)
             {
-                currentSpeed = GetComponent<FPS_Crouch>().crouchSpeed;
+                currentSpeed = CrouchModule.crouchSpeed;
             }
             else
             {
                 currentSpeed = walkSpeed;
             }
         }
-    }
 
-    void FixedUpdate()
-    {
-        Vector3 moveDirection;
-
-        if (jumpEnabled)
+        if (climbEnabled)
         {
-            if (GetComponent<FPS_Jump>().isGrounded)
+            if (ClimbModule.isClimbing)
             {
-                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
+                moveDirection = new Vector3(Input.GetAxis("Horizontal") * ClimbModule.climbSpeed, (Input.GetAxis("Vertical") * ClimbModule.climbSpeed) + (Input.GetAxis("Horizontal") * ClimbModule.climbSpeed), Input.GetAxis("Vertical") * ClimbModule.climbSpeed);
             }
             else
             {
-                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed * GetComponent<FPS_Jump>().AirLocomotionSpeedDegradation, -10, Input.GetAxis("Vertical") * currentSpeed * GetComponent<FPS_Jump>().AirLocomotionSpeedDegradation);
+                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
             }
-        }
-        else
-        {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
         }
 
         moveDirection = transform.TransformDirection(moveDirection);
 
-        Vector3 finalVelocity = transform.GetComponent<Rigidbody>().velocity;
+        finalVelocity = RigidbodyModule.velocity;
 
         finalVelocity.x = moveDirection.x;
+        finalVelocity.y = moveDirection.y;
         finalVelocity.z = moveDirection.z;
+    }
 
-        transform.GetComponent<Rigidbody>().velocity = finalVelocity;
+    void FixedUpdate()
+    {
+        if (climbEnabled)
+        {
+            if (ClimbModule.isClimbing)
+            {
+                RigidbodyModule.velocity = new Vector3(finalVelocity.x, finalVelocity.y, finalVelocity.z);
+            }
+            else
+            {
+                RigidbodyModule.velocity = new Vector3(finalVelocity.x, RigidbodyModule.velocity.y, finalVelocity.z);
+            }
+        }
+        else
+        {
+            RigidbodyModule.velocity = new Vector3(finalVelocity.x, RigidbodyModule.velocity.y, finalVelocity.z);
+        }
+
+        //RigidbodyModule.AddForce(moveDirection);
     }
 }
