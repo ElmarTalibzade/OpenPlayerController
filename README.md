@@ -22,15 +22,15 @@ You're free to retain them and use for both commercial and non-commercial purpos
 Open Player Controller is currently is in active development (as of August 2016) with current  subject to alteration and implementation of future ones.
 <br>For most up-to-date features, take a look at a <a href="https://trello.com/b/GXjWg5oO" target+"_blank">Trello Board</a>.
 
-##Current Features
+##Current Features (2 September 2016)
 * RigidBody based Player Locomotion
 * Push other RigidBody objects with Player's mass
 * Crouching - player can crouch underneath low objects by holding down Left Control button. Player's camera, and its collider, and movement speed, react to crouching
 * Jumping (incomplete) - player can jump around
+* * Climbing Ladders (experimental)
 
 ##Planned Features
 * Player Prone
-* Climbing Ladders
 * Walking on Stairs without any need of an invisible ramp
 * Swimming
 * React to falling from high places (e.g fall damage)
@@ -44,3 +44,6 @@ Open Player Controller is currently is in active development (as of August 2016)
 
 This can be done by simply navigating to the "Prefabs" folder, where you can find a FPS Player Controller and dragging it into the scene.
 <br><br>And that's pretty much it!
+
+##Collaboration on a project
+Please ensure that edited/added code is well commented before doing pull requests
