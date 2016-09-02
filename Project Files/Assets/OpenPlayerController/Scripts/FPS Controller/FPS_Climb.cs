@@ -3,20 +3,18 @@ using System.Collections;
 
 public class FPS_Climb : MonoBehaviour {
 
-    public bool enableClimb = true;
+    public string ClimbZoneTag = "OPC_ClimbZone";                           //specifies what tag should be registered as a ClimbZone
 
-    public string ClimbColliderTag = "OPC_ClimbZone";
+    public bool isClimbing = false;                                         
 
-    public bool isClimbing = false;
+    public float climbSpeed = 3.5f;                                         //how fast player moves in climbing mode
+    public bool moveSideways = true;                                        //if set true, player would be able to move sideways while climbing
 
-    public float climbSpeed = 3.5f;
-    public bool moveSideways = true;
-
-    FPS_Locomotion LocomotionModule;
+    FPS_Locomotion LocomotionModule;                                        //an internal variable used to store Player's Locomotion Script at runtime
 
     void Start()
     {
-        LocomotionModule = GetComponent<FPS_Locomotion>();
+        LocomotionModule = GetComponent<FPS_Locomotion>();                  //assign player's locomotion script to LocomotionModule
     }
 
     void Update()
@@ -24,21 +22,19 @@ public class FPS_Climb : MonoBehaviour {
 
     }
 
-    void OnTriggerStay(Collider trig)
+    void OnTriggerStay(Collider trig)                                       //Event runs when Player enters the climb zone
     {
-        if (trig.tag == ClimbColliderTag)
+        if (trig.tag == ClimbZoneTag)
         {
             isClimbing = true;
-            Debug.Log("Climbing!");
         }
     }
 
-    void OnTriggerExit(Collider trig)
+    void OnTriggerExit(Collider trig)                                       //Event runs when Player leaves the climb zone
     {
-        if (trig.tag == ClimbColliderTag)
+        if (trig.tag == ClimbZoneTag)
         {
             isClimbing = false;
-            Debug.Log("Left Climbing Zone...");
         }
     }
 
