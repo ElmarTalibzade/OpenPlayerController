@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Open Player Controller by elmar1498</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Open Player Controller</h1>
+        <h2>An Open Source RigidBody Based Player Controller for Unity Engine</h2>
+        <a href="https://github.com/elmar1498/OpenPlayerController" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="open-player-controller---a-free-and-open-source-character-controller-alternative-for-unity-engine" class="anchor" href="#open-player-controller---a-free-and-open-source-character-controller-alternative-for-unity-engine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Open Player Controller - A Free and Open Source Character Controller alternative for Unity Engine</h1>
+
+<h2>
+<a id="what-is-open-player-controller" class="anchor" href="#what-is-open-player-controller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is Open Player Controller?</h2>
+
+<p>Open Player Controller (OPC for short) is an open source Character Controller that makes a use of RigidBodies to move player around the scene.
+<br>Built from the ground up with C#, OPC is a flexible character system which can be inmplemented into any type of project (FPS only currently).
+<br>Its Modular system is one of the biggest perks. E.g, if you don't want your player to jump in your game/level, simply remove the script and OPC will do the rest.</p>
+
+<p><br><br><i>The project has started on 30 August 2016.</i></p>
+
+<h2>
+<a id="why-does-this-project-exist" class="anchor" href="#why-does-this-project-exist" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why does this project exist?</h2>
+
+<p><br>While the new RigidBody based Character Controller developed by Unity is a good, its codebase is too complex and there are sometimes features that developer doesn't need (e.g mobile input)
+<br>Sure there are some good alternatives out there on the Asset Store, but they're costly and, to some extent, are complex too. <br><br>OPC is aimed to be used by beginner/professional indie developers who want to create a quick prototype for their games in Unity Engine.</p>
+
+<h2>
+<a id="how-can-i-help-this-project" class="anchor" href="#how-can-i-help-this-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I help this project?</h2>
+
+<p>Open Player Controller is an open source project. 
+Fork it as your own repository to make any modifications you want. Let's make OPC better together for everyone!
+<br><br>
+You're free to retain them and use for both commercial and non-commercial purposes (apart from directly selling scripts). 
+<br><br>OPC is licensed under <a href="https://github.com/elmar1235/OpenPlayerController/blob/master/LICENSE.md">MIT License</a>.</p>
+
+<h1>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h1>
+
+<p>Open Player Controller is currently is in active development (as of August 2016) with current  subject to alteration and implementation of future ones.
+<br>For most up-to-date features, take a look at a <a href="https://trello.com/b/GXjWg5oO">Trello Board</a>.</p>
+
+<h2>
+<a id="current-features-2-september-2016" class="anchor" href="#current-features-2-september-2016" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Current Features (2 September 2016)</h2>
+
+<ul>
+<li>RigidBody based Player Locomotion</li>
+<li>Push other RigidBody objects with Player's mass</li>
+<li>Crouching - player can crouch underneath low objects by holding down Left Control button. Player's camera, and its collider, and movement speed, react to crouching</li>
+<li>Jumping (incomplete) - player can jump around</li>
+<li>* Climbing Ladders (experimental)</li>
+</ul>
+
+<h2>
+<a id="planned-features" class="anchor" href="#planned-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Planned Features</h2>
+
+<ul>
+<li>Player Prone</li>
+<li>Walking on Stairs without any need of an invisible ramp</li>
+<li>Swimming</li>
+<li>React to falling from high places (e.g fall damage)</li>
+<li>React to being crushed by a RigidBody Object taking its mass into consideration</li>
+<li>React to having a RigidBody Object thrown at taking its mass into consideration</li>
+<li>Many more planned (Third Person Shooter Player Controller?)</li>
+</ul>
+
+<h1>
+<a id="how-to-get-started" class="anchor" href="#how-to-get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to get Started?</h1>
+
+<h2>
+<a id="implementing-open-player-controller-into-unity-project" class="anchor" href="#implementing-open-player-controller-into-unity-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementing Open Player Controller into Unity Project</h2>
+
+<p>This can be done by simply navigating to the "Prefabs" folder, where you can find a FPS Player Controller and dragging it into the scene.
+<br><br>And that's pretty much it!</p>
+
+<h2>
+<a id="collaboration-on-a-project" class="anchor" href="#collaboration-on-a-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Collaboration on a project</h2>
+
+<p>Please ensure that edited/added code is well commented before doing pull requests</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/elmar1498/OpenPlayerController/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/elmar1498/OpenPlayerController/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/elmar1498/OpenPlayerController"></a> is maintained by <a href="https://github.com/elmar1498">elmar1498</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
