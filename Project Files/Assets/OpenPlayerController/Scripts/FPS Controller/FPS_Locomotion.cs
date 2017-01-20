@@ -75,18 +75,13 @@ public class FPS_Locomotion : MonoBehaviour {
             if (ClimbModule.isClimbing)                                                 //also check if the player is currently climbing
             {
                 //if the player is climbing, then increase the Y velocity of the player, making him go up the climb zone based on the vertical input (aka forward velocity)
-                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical") * ClimbModule.climbSpeed, Input.GetAxis("Vertical") * currentSpeed);
+                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed);
             }
             else
             {
                 //otherwise, player walks as usual
                 moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
             }
-        }
-        else
-        {
-            //otherwise, player walks as usual
-            moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
         }
 
         moveDirection = transform.TransformDirection(moveDirection);                    //convert move direction to the transform direction
