@@ -37,6 +37,6 @@ public class FPS_InputController : MonoBehaviour
             component_Jump.Jump();
         }
 
-        component_Crouch.ToggleCrouch(Input.GetKeyDown(KeyCode.LeftControl));
+        component_Crouch.ToggleCrouch(Input.GetKey(KeyCode.LeftControl));
     }
 }
