@@ -16,10 +16,6 @@ public class FPS_Climb : MonoBehaviour
         LocomotionModule = GetComponent<FPS_Locomotion>();                  //assign player's locomotion script to LocomotionModule
     }
 
-    private void Update()
-    {
-    }
-
     private void OnTriggerStay(Collider trig)                                       //Event runs when Player enters the climb zone
     {
         if (trig.tag == ClimbZoneTag)

@@ -19,7 +19,7 @@ public class FPS_Crouch : MonoBehaviour
     private CapsuleCollider CapsuleModule;
     private FPS_Jump JumpModule;
 
-    private void Start()
+    void Start()
     {
         LocomotionModule = GetComponent<FPS_Locomotion>();                      //assign GetComponent() calls to our previously declared variables
         JumpModule = GetComponent<FPS_Jump>();
@@ -31,9 +31,9 @@ public class FPS_Crouch : MonoBehaviour
         camera_crouchPos = new Vector3(camera_initPos.x, camera_initPos.y - crouchAmount, camera_initPos.z);            //based on camera's initial LOCAL position, we calculate and store the position of the camera when player crouches
     }
 
-    private void Update()
+    public void ToggleCrouch(bool state)
     {
-        if (Input.GetKey(KeyCode.LeftControl))                                  //if player holds LEFT CONTROL (LCTRL)
+        if (state)                                  //if player holds LEFT CONTROL (LCTRL)
         {
             if (LocomotionModule.jumpEnabled)                                   //check if player's has FPS_Jump script present
             {
@@ -65,17 +65,17 @@ public class FPS_Crouch : MonoBehaviour
         }
 
         //the code here is self-explanatory: run specific function based on whether the player is crouching or not
-        if (isCrouching)
+        if (state)
         {
-            StartCrouching();
+            startCrouch();
         }
         else
         {
-            StopCrouching();
+            endCrouch();
         }
     }
 
-    public void StartCrouching()
+    private void startCrouch()
     {
         fps_camera.transform.localPosition = Vector3.Lerp(fps_camera.transform.localPosition, camera_crouchPos, Time.deltaTime / 0.2f);                                 //smoothly lerp FPS camera from its current LOCAL position to the crouch LOCAL position
 
@@ -84,7 +84,7 @@ public class FPS_Crouch : MonoBehaviour
         CapsuleModule.height = 1;
     }
 
-    public void StopCrouching()
+    private void endCrouch()
     {
         fps_camera.transform.localPosition = Vector3.Lerp(fps_camera.transform.localPosition, camera_initPos, Time.deltaTime / 0.2f);                                   //smoothly lerp FPS camera LOCAL position from its current LOCAL position to its initial LOCAL position, which has been calculated before
 
