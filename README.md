@@ -16,11 +16,11 @@ Open Player Controller is an open source project.
 Fork it as your own repository to make any modifications you want. Let's make OPC better together for everyone!
 <br><br>
 You're free to retain them and use for both commercial and non-commercial purposes (apart from directly selling scripts). 
-<br><br>OPC is licensed under <a href="https://github.com/elmar1235/OpenPlayerController/blob/master/LICENSE.md" target+"_blank">MIT License</a>.
+<br><br>OPC is licensed under [MIT License](https://github.com/elmar1235/OpenPlayerController/blob/master/LICENSE.md).
 
 # Features
 Open Player Controller is currently is in active development (as of August 2016) with current  subject to alteration and implementation of future ones.
-<br>For most up-to-date features, take a look at a <a href="https://trello.com/b/GXjWg5oO" target+"_blank">Trello Board</a>.
+<br>For most up-to-date features, take a look at a [Trello Board](https://trello.com/b/GXjWg5oO).
 
 ## Current Features (2 September 2016)
 * RigidBody based Player Locomotion
