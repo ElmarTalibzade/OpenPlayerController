@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 33026591896618210}
   - component: {fileID: 136226456463088564}
   - component: {fileID: 23830831624851894}
-  - component: {fileID: 114826701648184538}
   - component: {fileID: 54698525126063648}
+  - component: {fileID: 114642831538112446}
+  - component: {fileID: 114826701648184538}
   - component: {fileID: 114016365542933758}
   - component: {fileID: 114459929689830072}
   - component: {fileID: 114635341234483264}
@@ -212,7 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 5
-  canJump: 1
   isGrounded: 1
   AirLocomotionSpeedDegradation: 0.2
 --- !u!114 &114635341234483264
@@ -232,6 +232,17 @@ MonoBehaviour:
   jumpEnabled: 0
   crouchEnabled: 0
   climbEnabled: 0
+--- !u!114 &114642831538112446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1680711217679706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c59c11b494358479be818867409fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114729546083507508
 MonoBehaviour:
   m_ObjectHideFlags: 1
