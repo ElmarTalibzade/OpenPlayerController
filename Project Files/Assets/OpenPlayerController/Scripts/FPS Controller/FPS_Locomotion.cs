@@ -53,7 +53,7 @@ public class FPS_Locomotion : MonoBehaviour
         climbEnabled = (ClimbModule != null);
     }
 
-    private void Update()
+    public void Move(Vector2 DIR)
     {
         transform.eulerAngles = new Vector3(0, CameraModule.currentYRotation, 0);       //set player's Y rotation based on camera's Y rotation value
 
@@ -74,12 +74,12 @@ public class FPS_Locomotion : MonoBehaviour
             if (ClimbModule.isClimbing)                                                 //also check if the player is currently climbing
             {
                 //if the player is climbing, then increase the Y velocity of the player, making him go up the climb zone based on the vertical input (aka forward velocity)
-                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed, Input.GetAxis("Vertical") * currentSpeed);
+                moveDirection = new Vector3(DIR.x * currentSpeed, DIR.y * currentSpeed, DIR.y * currentSpeed);
             }
             else
             {
                 //otherwise, player walks as usual
-                moveDirection = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, -10, Input.GetAxis("Vertical") * currentSpeed);
+                moveDirection = new Vector3(DIR.x * currentSpeed, -10, DIR.y * currentSpeed);
             }
         }
 
