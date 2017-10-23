@@ -8,15 +8,13 @@ using UnityEngine;
 public class FPS_InputController : MonoBehaviour
 {
     private FPS_CameraLook component_CameraLook;
-    private FPS_Climb component_Climb;
     private FPS_Jump component_Jump;
     private FPS_Locomotion component_Locomotion;
     private FPS_Crouch component_Crouch;
-    
+
     void Start()
     {
         component_CameraLook = transform.GetChild(0).gameObject.GetComponent<FPS_CameraLook>();
-        component_Climb = GetComponent<FPS_Climb>();
         component_Jump = GetComponent<FPS_Jump>();
         component_Locomotion = GetComponent<FPS_Locomotion>();
         component_Crouch = GetComponent<FPS_Crouch>();
@@ -24,6 +22,21 @@ public class FPS_InputController : MonoBehaviour
 
     void Update()
     {
-        
+        component_Locomotion.Move(new Vector2(
+        Input.GetAxis("Horizontal"),
+        Input.GetAxis("Vertical")
+            ));
+
+        component_CameraLook.Look(new Vector2(
+                Input.GetAxis("Mouse X"),
+                Input.GetAxis("Mouse Y")
+            ));
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            component_Jump.Jump();
+        }
+
+        component_Crouch.ToggleCrouch(Input.GetKeyDown(KeyCode.LeftControl));
     }
 }
