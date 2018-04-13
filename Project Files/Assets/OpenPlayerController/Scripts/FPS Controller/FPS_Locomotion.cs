@@ -81,6 +81,10 @@ public class FPS_Locomotion : MonoBehaviour
                 //otherwise, player walks as usual
                 moveDirection = new Vector3(DIR.x * currentSpeed, -10, DIR.y * currentSpeed);
             }
+        }else
+        {
+            //if climbing feature does is disabled entirely, then walks as usual (same as above)
+            moveDirection = new Vector3(DIR.x * currentSpeed, -10, DIR.y * currentSpeed);
         }
 
         moveDirection = transform.TransformDirection(moveDirection);                    //convert move direction to the transform direction
