@@ -1,0 +1,16 @@
+{
+    "name": "OpenPlayerController.FirstPerson",
+    "rootNamespace": "OpenPlayerController.FirstPerson",
+    "references": [
+        "GUID:82b7b5d061c64fc484507419da646da9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
