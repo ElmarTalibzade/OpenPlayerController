@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace OpenPlayerController.FirstPerson
 {
+    [AddComponentMenu("Open Player Controller/First Person/Input Controller")]
     public class InputController : MonoBehaviour
     {
         public CameraLookController CameraLookController;

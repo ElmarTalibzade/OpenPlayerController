@@ -5,6 +5,7 @@ namespace OpenPlayerController.FirstPerson
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(JumpController))]
+    [AddComponentMenu("Open Player Controller/First Person/Movement Controller")]
     public class MovementController : MonoBehaviour
     {
         private Rigidbody _rigidbody;

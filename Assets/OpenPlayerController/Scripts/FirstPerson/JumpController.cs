@@ -4,6 +4,7 @@ using OpenPlayerController.Common;
 namespace OpenPlayerController.FirstPerson
 {
     [RequireComponent(typeof(Rigidbody))]
+    [AddComponentMenu("Open Player Controller/First Person/Jump Controller")]
     public class JumpController : MonoBehaviour, IMovementMultiplier
     {
         private const float s_GroundedVerticalCheck = 0.1f;

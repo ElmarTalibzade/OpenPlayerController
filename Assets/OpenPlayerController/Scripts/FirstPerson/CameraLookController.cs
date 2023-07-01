@@ -4,6 +4,7 @@ using OpenPlayerController.Common;
 namespace OpenPlayerController.FirstPerson
 {
     [RequireComponent(typeof(Transform))]
+    [AddComponentMenu("Open Player Controller/First Person/Camera Look Controller")]
     public class CameraLookController : MonoBehaviour
     {
         private float _currentXRotationVelocity;
