@@ -5,24 +5,22 @@ namespace OpenPlayerController.FirstPerson
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(JumpController))]
-    [RequireComponent(typeof(CameraLookController))]
     public class MovementController : MonoBehaviour
     {
         private Rigidbody _rigidbody;
         private JumpController _jumpController;
-        private CameraLookController _cameraLookController;
-
-        private float _currentSpeed;
 
         private Vector3 _moveDirection;
 
         public MovementData Data;
+        public CameraLookController CameraLookController;
+
+        private float MoveSpeed => Data.BaseSpeed * _jumpController.GetMovementMultiplier();
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _jumpController = GetComponent<JumpController>();
-            _cameraLookController = GetComponent<CameraLookController>();
         }
 
         private void FixedUpdate()
@@ -32,8 +30,8 @@ namespace OpenPlayerController.FirstPerson
 
         public void Move(Vector2 direction)
         {
-            transform.eulerAngles = new Vector3(0, _cameraLookController.GetCameraRotation().y, 0);
-            _moveDirection = new Vector3(direction.x * _currentSpeed, -Data.Gravity, direction.y * _currentSpeed);
+            transform.eulerAngles = new Vector3(0, CameraLookController.GetCameraRotation().y, 0);
+            _moveDirection = new Vector3(direction.x * MoveSpeed, -Data.Gravity, direction.y * MoveSpeed);
             _moveDirection = transform.TransformDirection(_moveDirection);
         }
     }

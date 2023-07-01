@@ -6,6 +6,6 @@ namespace OpenPlayerController.Common
     public class JumpData : ScriptableObject
     {
         public float JumpForce = 4.5f;
-        public float AirborneSpeedMultiplier = 0.2f;
+        public float AirborneSpeedMultiplier = 0.8f;
     }
 }

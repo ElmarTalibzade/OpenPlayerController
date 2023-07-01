@@ -1,34 +1,37 @@
 using UnityEngine;
 using OpenPlayerController.Common;
 
- namespace OpenPlayerController.FirstPerson
- {
-     [RequireComponent(typeof(Rigidbody))]
-     [RequireComponent(typeof(Collider))]
-     public class JumpController : MonoBehaviour, IMovementMultiplier
-     {
-         private const float s_GroundedVerticalCheck = 0.01f;
+namespace OpenPlayerController.FirstPerson
+{
+    [RequireComponent(typeof(Rigidbody))]
+    public class JumpController : MonoBehaviour, IMovementMultiplier
+    {
+        private const float s_GroundedVerticalCheck = 0.1f;
 
-         private Rigidbody _rigidBody;
-         private Collider _collider;
+        private Rigidbody _rigidBody;
 
-         public JumpData Data;
+        public JumpData Data;
+        public Collider BodyCollider;
 
-         public bool IsGrounded() => Physics.Raycast(transform.position, -Vector3.up, _collider.bounds.extents.y + s_GroundedVerticalCheck);
-         public float GetMovementMultiplier() => IsGrounded() ? 1.0f : Data.AirborneSpeedMultiplier;
+        public bool IsGrounded { get; private set; }
+        public float GetMovementMultiplier() => IsGrounded ? 1.0f : Data.AirborneSpeedMultiplier;
 
-         private void Start()
-         {
-             _collider = GetComponent<Collider>();
-             _rigidBody = GetComponent<Rigidbody>();
-         }
+        private void Start()
+        {
+            _rigidBody = GetComponent<Rigidbody>();
+        }
 
-         public void Jump()
-         {
-             if (IsGrounded())
-             {
-                 _rigidBody.AddForce(Vector3.up * Data.JumpForce, ForceMode.Impulse);
-             }
-         }
-     }
- }
+        private void FixedUpdate()
+        {
+            IsGrounded = Physics.Raycast(transform.position, -Vector3.up, BodyCollider.bounds.extents.y + s_GroundedVerticalCheck);
+        }
+
+        public void Jump()
+        {
+            if (IsGrounded)
+            {
+                _rigidBody.AddForce(Vector3.up * Data.JumpForce, ForceMode.Impulse);
+            }
+        }
+    }
+}
