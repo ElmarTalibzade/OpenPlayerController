@@ -15,7 +15,6 @@ namespace OpenPlayerController.Legacy.OpenPlayerController.Scripts.FPController
 
         //used to store mouse movement input * lookSensitivity
         private float YRot;
-
         private float XRot;
 
         private float XRotationV;

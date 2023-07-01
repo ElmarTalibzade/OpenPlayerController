@@ -1,0 +1,7 @@
+namespace OpenPlayerController.FirstPerson
+{
+    public class InputControllelr
+    {
+        
+    }
+}

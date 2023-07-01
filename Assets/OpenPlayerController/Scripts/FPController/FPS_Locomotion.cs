@@ -90,9 +90,7 @@ namespace OpenPlayerController.Legacy.OpenPlayerController.Scripts.FPController
             }
 
             moveDirection = transform.TransformDirection(moveDirection);                    //convert move direction to the transform direction
-
             finalVelocity = RigidbodyModule.velocity;                                       //get player's rigidbody velocity and store it in the finalVelocity
-
             finalVelocity = moveDirection;                                                  //set final velocity equal to moveDirection
         }
 
