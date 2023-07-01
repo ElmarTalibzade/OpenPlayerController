@@ -10,14 +10,14 @@ namespace OpenPlayerController.FirstPerson
         private float _currentXRotationVelocity;
         private float _currentYRotationVelocity;
 
-        private float _currentXRotation;
-        private float _currentYRotation;
+        private Vector2 _desiredRotation;
+        private Vector2 _currentRotation;
 
         private Transform _transform;
 
         public CameraLookData Data;
 
-        public Quaternion GetCameraRotation() => _transform.rotation;
+        public float GetYRotation() => _currentRotation.y;
 
         private void Start()
         {
@@ -26,16 +26,16 @@ namespace OpenPlayerController.FirstPerson
 
         public void Look(Vector2 direction)
         {
-            var rotationX = direction.x * Data.LookSensitivity;
-            var rotationY = Mathf.Clamp(-direction.y * Data.LookSensitivity, Data.MinimumVerticalRotation, Data.MaximumVerticalRotation);
+            _desiredRotation.x += direction.x * Data.LookSensitivity;
+            _desiredRotation.y += Mathf.Clamp(-direction.y * Data.LookSensitivity, Data.MinimumVerticalRotation, Data.MaximumVerticalRotation);
 
-            _currentXRotation = Mathf.SmoothDamp(_currentXRotation, rotationX, ref _currentXRotationVelocity, Data.LookSmoothDamp);
-            _currentYRotation = Mathf.SmoothDamp(_currentYRotation, rotationY, ref _currentYRotationVelocity, Data.LookSmoothDamp);
+            _currentRotation.x = Mathf.SmoothDamp(_currentRotation.x, _desiredRotation.y, ref _currentXRotationVelocity, Data.LookSmoothDamp);
+            _currentRotation.y = Mathf.SmoothDamp(_currentRotation.y, _desiredRotation.x, ref _currentYRotationVelocity, Data.LookSmoothDamp);
         }
 
         private void LateUpdate()
         {
-            _transform.rotation = Quaternion.Euler(_currentXRotation, _currentYRotation, 0);
+            _transform.rotation = Quaternion.Euler(_currentRotation.x, _currentRotation.y, 0);
         }
     }
 }

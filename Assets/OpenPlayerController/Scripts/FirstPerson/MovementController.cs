@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using OpenPlayerController.Common;
 
@@ -29,9 +30,13 @@ namespace OpenPlayerController.FirstPerson
             _rigidbody.velocity = new Vector3(_moveDirection.x, _rigidbody.velocity.y, _moveDirection.z);
         }
 
+        private void Update()
+        {
+            transform.eulerAngles = new Vector3(0, CameraLookController.GetYRotation(), 0);
+        }
+
         public void Move(Vector2 direction)
         {
-            transform.eulerAngles = new Vector3(0, CameraLookController.GetCameraRotation().y, 0);
             _moveDirection = new Vector3(direction.x * MoveSpeed, -Data.Gravity, direction.y * MoveSpeed);
             _moveDirection = transform.TransformDirection(_moveDirection);
         }
