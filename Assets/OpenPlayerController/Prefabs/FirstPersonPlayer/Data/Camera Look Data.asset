@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea4851df40a46c8858ce44e265e3583, type: 3}
   m_Name: Camera Look Data
   m_EditorClassIdentifier: 
-  LookSensitivity: 2.5
+  LookSensitivity: 3.5
   LookSmoothDamp: 0.1
   MinimumVerticalRotation: -90
   MaximumVerticalRotation: 90
