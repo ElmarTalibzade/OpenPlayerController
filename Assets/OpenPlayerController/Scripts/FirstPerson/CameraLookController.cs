@@ -7,9 +7,7 @@ namespace OpenPlayerController.FirstPerson
     [AddComponentMenu("Open Player Controller/First Person/Camera Look Controller")]
     public class CameraLookController : MonoBehaviour
     {
-        private float _currentXRotationVelocity;
-        private float _currentYRotationVelocity;
-
+        private Vector2 _currentRotationVelocity;
         private Vector2 _desiredRotation;
         private Vector2 _currentRotation;
 
@@ -29,8 +27,8 @@ namespace OpenPlayerController.FirstPerson
             _desiredRotation.x += direction.x * Data.LookSensitivity;
             _desiredRotation.y += Mathf.Clamp(-direction.y * Data.LookSensitivity, Data.MinimumVerticalRotation, Data.MaximumVerticalRotation);
 
-            _currentRotation.x = Mathf.SmoothDamp(_currentRotation.x, _desiredRotation.y, ref _currentXRotationVelocity, Data.LookSmoothDamp);
-            _currentRotation.y = Mathf.SmoothDamp(_currentRotation.y, _desiredRotation.x, ref _currentYRotationVelocity, Data.LookSmoothDamp);
+            _currentRotation.x = Mathf.SmoothDamp(_currentRotation.x, _desiredRotation.y, ref _currentRotationVelocity.x, Data.LookSmoothDamp);
+            _currentRotation.y = Mathf.SmoothDamp(_currentRotation.y, _desiredRotation.x, ref _currentRotationVelocity.y, Data.LookSmoothDamp);
         }
 
         private void LateUpdate()
